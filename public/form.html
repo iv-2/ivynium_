@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form name="contact"
+        method="POST"
+        netlify>
+    <input type="hidden"
+           name="form-name"
+           value="contact" />
+    <label for="name">
+      name
+      <input type="text"
+             name="name"
+             id="name">
+    </label>
+    <label for="email">
+      email
+      <input type="email"
+             name="email"
+             id="email">
+    </label>
+    <label for="subject">
+      subject
+      <input type="text"
+             name="subject"
+             id="subject">
+    </label>
+    <label for="message">
+      message
+      <textarea type="text"
+             name="message"
+             id="message">
+    </label>
+
+    <button>submit</button>
+  </form>
+</body>
+
+</html>

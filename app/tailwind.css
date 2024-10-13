@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/Raleway-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+.noScroll {
+  overflow: hidden !important;
+  padding-right: calc(var(--scrollbar-compensation)) !important;
+}
+
+/* Contour animation setup */
+.contouredOff:before {
+  position: absolute;
+  content: "";
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  top: calc(2px / -1);
+  left: calc(2px / -1);
+  background: linear-gradient(to right, #cbd5e1 0%, #cbd5e1 100%),
+    linear-gradient(to top, #cbd5e1 50%, transparent 50%),
+    linear-gradient(to top, #cbd5e1 50%, transparent 50%),
+    linear-gradient(to right, #cbd5e1 0%, #cbd5e1 100%),
+    linear-gradient(to left, #cbd5e1 0%, #cbd5e1 100%);
+  background-size:
+    100% 2px,
+    2px 200%,
+    2px 200%,
+    0% 2px,
+    0% 2px;
+  background-position:
+    50% 100%,
+    0% 0%,
+    100% 0%,
+    100% 0%,
+    0% 0%;
+  background-repeat: no-repeat, no-repeat;
+  transition:
+    transform 0.1s ease-in-out,
+    background-position 0.1s ease-in-out,
+    background-size 0.1s ease-in-out;
+  transform: scaleX(0) rotate(180deg);
+  transition-delay: 0.2s, 0.1s, 0s;
+}
+.contouredOn:before {
+  pointer-events: none;
+  position: absolute;
+  content: "";
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  top: calc(2px / -1);
+  left: calc(2px / -1);
+  background: linear-gradient(to right, #cbd5e1 0%, #cbd5e1 100%),
+    linear-gradient(to top, #cbd5e1 50%, transparent 50%),
+    linear-gradient(to top, #cbd5e1 50%, transparent 50%),
+    linear-gradient(to right, #cbd5e1 0%, #cbd5e1 100%),
+    linear-gradient(to left, #cbd5e1 0%, #cbd5e1 100%);
+  background-size:
+    200% 2px,
+    2px 400%,
+    2px 400%,
+    55% 2px,
+    55% 2px;
+  background-position:
+    50% 100%,
+    0% 100%,
+    100% 100%,
+    100% 0%,
+    0% 0%;
+  background-repeat: no-repeat, no-repeat;
+  transition:
+    transform 0.1s ease-in-out,
+    background-position 0.1s ease-in-out,
+    background-size 0.1s ease-in-out;
+  transform: scaleX(1) rotate(180deg);
+  transition-delay: 0s, 0.1s, 0.2s;
+}
+
+/* Animated border 360 setup */
+.border360 {
+  border: solid 3px transparent;
+
+  --border-angle: 0turn;
+  --main-bg: conic-gradient(
+    var(--color-bgDark-DEFAULT),
+    var(--color-bgDark-DEFAULT) 100%
+  );
+
+  --animation-duration: 10s;
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 0%,
+    var(--color-primary-DEFAULT) 50%
+  );
+
+  background:
+    var(--main-bg) padding-box,
+    var(--gradient-border) border-box;
+  animation: spin360 var(--animation-duration) linear infinite;
+}
+.border360:hover,
+.border360:active,
+.border360:focus {
+  --animation-duration: 2s;
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 0%,
+    var(--color-primary-darker) 50%
+  );
+}
+
+@keyframes spin360 {
+  to {
+    --border-angle: 1turn;
+  }
+}
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+/* Animated scrolling banner */
+.scrollingBanner {
+  --scrollBannerSize: clamp(10rem, 1rem + 40vmin, 30rem);
+  --scrollBannerGap: calc(var(--scrollBannerSize) / 14);
+  --scrollBannerDuration: 15s;
+  mask-image: linear-gradient(
+    var(--mask-direction, to right),
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 20%,
+    hsl(0 0% 0% / 1) 80%,
+    hsl(0 0% 0% / 0)
+  );
+}
+
+@keyframes bannerScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - var(--scrollBannerGap)));
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .contouredOn:before {
+    transition: none;
+  }
+  .contouredOn:after {
+    transition: none;
+  }
+  .border360 {
+    animation: none;
+  }
+}

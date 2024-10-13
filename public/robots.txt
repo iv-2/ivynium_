@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /cv/
+Disallow: /fonts/
+Disallow: /images/
+Disallow: /logos/
+Disallow: /form.html
+
+Sitemap: https://www.ivynium.com/sitemap.xml
